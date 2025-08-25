@@ -12,6 +12,9 @@ static const char unknown_str[] = "n/a";
 /*
  * function            description                     argument (example)
  *
+ * backlight_perc      backlight percentage            device name
+ *                                                     (intel_backlight, numbered on FreeBSD)
+ *                                                     NULL on OpenBSD
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
@@ -66,5 +69,13 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+    { backlight_perc, "%s",       "intel_backlight" },
+    { cpu_perc,       " | %s",    NULL },
+    { ram_perc,       " | %s",    NULL },
+    { temp,           " | %s°C",  "/sys/class/thermal/thermal_zone0/temp" },
+    { netspeed_rx,    " | %s",    "wlp4s0" },
+    { keymap,         " | %s",    NULL },
+    { battery_state,  " | %s",    "BAT0" },
+    { battery_perc,   "%s;",       "BAT0" },
+	{ datetime,       " | %s",    "%H:%M" },
 };

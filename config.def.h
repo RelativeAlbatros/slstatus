@@ -81,13 +81,14 @@ const size_t notifiable_levels_count = sizeof(notifiable_levels) / sizeof(notifi
 static const struct arg args[] = {
 	/* function format          argument */
     { backlight_perc, "%s",       "intel_backlight" },
-    { cpu_perc,       " | %s",    NULL },
-    { ram_perc,       " | %s",    NULL },
+    { cpu_perc,       " | CPU: %s%%",    NULL },
+    { ram_perc,       " | RAM: %s%%",    NULL },
     { temp,           " | %s°C",  "/sys/class/thermal/thermal_zone0/temp" },
-    { netspeed_rx,    " | %s",    "wlp4s0" },
-    { keymap,         " | %s",    NULL },
+    { netspeed_rx,    " |  %s",    "wlp4s0" },
+    { netspeed_tx,    "  %s;",    "wlp4s0" },
+    { keymap,         "%s",    NULL },
     { battery_state,  " | %s",    "BAT0" },
-    { battery_perc,   "%s;",       "BAT0" },
-	{ datetime,       " | %s",    "%H:%M" },
+    { battery_perc,   "%s%%",       "BAT0" },
+	{ datetime,       " | %s ",    "%H:%M" },
 	{ battery_notify, "",       "BAT0" }, /* There is nothing to print its just a notifications*/
 };

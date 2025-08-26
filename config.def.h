@@ -9,6 +9,15 @@ static const char unknown_str[] = "n/a";
 /* maximum output string length */
 #define MAXLEN 2048
 
+/* battery levels to notify - add any levels you want to receive notification for (in percent) */
+const int notifiable_levels[] = {
+    20,
+    10,
+    5,
+};
+
+const size_t notifiable_levels_count = sizeof(notifiable_levels) / sizeof(notifiable_levels[0]);
+
 /*
  * function            description                     argument (example)
  *
@@ -21,6 +30,8 @@ static const char unknown_str[] = "n/a";
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_state       battery charging state          battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
+ * battery_notify      linux battery notifications     battery name (BAT0)
+ *                                                     OpenBSD/FreeBSD not supported
  * cat                 read arbitrary file             path
  * cpu_freq            cpu frequency in MHz            NULL
  * cpu_perc            cpu usage in percent            NULL
@@ -78,4 +89,5 @@ static const struct arg args[] = {
     { battery_state,  " | %s",    "BAT0" },
     { battery_perc,   "%s;",       "BAT0" },
 	{ datetime,       " | %s",    "%H:%M" },
+	{ battery_notify, "",       "BAT0" }, /* There is nothing to print its just a notifications*/
 };
